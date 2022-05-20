@@ -33,14 +33,15 @@ class Cat {
   }
   
 
-// Function.prototype.myBind = function(context){
-//     let bindArguments = Object.values(arguments).slice(1);
-//     let f = this;
-//     return function(){
-//         let callArguments = Object.values(arguments);
-//         return f.apply(context,[...bindArguments,...callArguments])
-//     }
-// }
+Function.prototype.myBind = function(context){
+    let bindArguments = Object.values(arguments).slice(1);
+    let f = this;
+    return function(){
+        let callArguments = Object.values(arguments);
+        return f.apply(context,[...bindArguments,...callArguments])
+    }
+}
+
 Function.prototype.myBind = function(context,...bindArguments){
     return (...callArguments) => {
         this.apply(context,bindArguments.concat(callArguments))
